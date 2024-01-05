@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    
     <?php  
         $a = 4;
         $b = 10;
