@@ -1,7 +1,7 @@
 <php?
     $rate = 0.24;
-    $y = $_GET['yen'];
-    $bath = $y * $rate;
+    $y = $_POST['yen'];
+    $baht = $y * $rate;
 
-    echo "$y Yen = $bath Bath";
+    echo "$y Yen = $baht Baht";
 ?>
