@@ -6,16 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    
+
     <?php  
-        $a = 4;
-        $b = 10;
-        $c = ($b - 5) * $a; //20
-        echo "Result 1 = " . $c . "<BR>"; //BR=บรรนทัดใหม่
-        echo 'Result 2 = ' . $c . '<BR>';
-        echo "Result 3 = $c <BR>"; //มองเป็นตัวแปร " "
-        echo 'Result 4 = $c <BR>'; //มอง $c เป็นข้อความทั้งหมด ' ' ไม่มองเป็นตัวแปร
-        echo "Result 5 = " . ($c + $b) . "<BR>";  // 20+10 = 30
+        $ages = array('Bob' => 20, 'Peter' => 35);
+
+        echo "1 - " . $ages['Bob'] . "<BR>"; //20
+        echo "2 - " . $ages['Peter'] . "<BR>"; //35
+
+        $ages['Lek'] = 18;
+        $ages['Ying'] = 42;
+
+        echo "3 - " . ($ages['Lek'] + $ages['Peter']) . "<BR>"; //18 + 35 = 53
+
+        $ages['Peter'] = $ages['Bob'] - $ages['Lek']; //20 - 18 = 2
+
+        echo "4 - " . $ages['Peter'] . "<BR>"; //2
     ?>
 
 </body>
