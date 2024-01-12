@@ -9,7 +9,16 @@
 <h1 style="text-align: center;">Webboard Nannapath</h1>
     <hr> 
     <div style="text-align: center;">
-        ต้องการดูกระทู้หมายเลข <?php echo $_GET['id']; ?> 
+        ต้องการดูกระทู้หมายเลข <?php echo " $_GET[id]<br>";
+
+        $id = $_GET['id'];
+        if(($id%2) == 0){
+            echo "เป็นกระทู้หมายเลขคู่";
+        }else{
+            echo "เป็นกระทู้หมายเลขคี่";
+        }
+        ?>
+        
     </div>
     <br>
     <table style="border: 2px solid black; width: 40%;" align="center">
@@ -17,7 +26,7 @@
             <td style=" background-color: #6CD2FE;">แสดงความคิดเห็น</td>
         </tr> 
         <tr>
-            <td>  <textarea name="" id="" cols="80" rows="10"></textarea></td>
+            <td> <center><textarea  name="" id="" cols="80" rows="10"></textarea></center> </td>
         <tr>
         <td style="text-align: center;"> 
             <input type="submit" value="ส่งข้อความ"> </td>
