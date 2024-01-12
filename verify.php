@@ -28,7 +28,7 @@
     ?>
 
     </div>
-    <center><a href="login.html">กลับไปยังหน้าหลัก</center>
+    <center><a href="index.php">กลับไปยังหน้าหลัก</center>
     
     
 
