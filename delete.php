@@ -9,6 +9,7 @@ if(isset($_SESSION['id']) && $_SESSION['role'] == 'a'){
 
 }else{
     header("location:index.php");
+    die();
 }
 
 ?>
