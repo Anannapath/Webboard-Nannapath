@@ -26,7 +26,7 @@
             </tr>
         </table>
         <br>
-        <center>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.html">กรุณาสมัครสมาชิก</center>
+        <center>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</center>
     </form>
     
 </body>

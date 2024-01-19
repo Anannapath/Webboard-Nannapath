@@ -41,7 +41,7 @@
             </tr>
         </table>
         <br>
-        <center><a href="index.html">กลับไปหน้าหลัก</center>
+        <center><a href="index.php">กลับไปหน้าหลัก</center>
     </form>
 </body>
 </html>
