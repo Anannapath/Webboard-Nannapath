@@ -31,6 +31,8 @@ session_start();
                     ผู้ใช้งานระบบ : $_SESSION[username]&nbsp;&nbsp; 
                     <a href=logout.php style= ' float: right; ' > ออกจากระบบ </a>
                 </div>";//&nbsp วรรค
+
+            echo "<br> <a href=newpost.php > สร้างกระทู้ใหม่ </a> ";
             
         }
         
@@ -42,7 +44,13 @@ session_start();
         <?php
 
             for($i = 1; $i <= 10; $i++){
-                echo "<li><a href=post.php?id=$i> กระทู้ที่ $i </a></li>";
+
+                echo "<li><a href=post.php?id=$i> กระทู้ที่ $i </a>";
+                if(isset($_SESSION['id']) && $_SESSION['role'] == 'a'){//login YES/NO and role == a
+                    echo "&nbsp;&nbsp; <a href=delete.php?id=$i > ลบ </a>";
+                }
+                echo "</li>";
+                
             }
 
         ?>
