@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +16,26 @@
     <hr>
     <form >
         หมวดหมู่ : <select valoue="category">
-        <option value="all">--ทั้งหมด--</option>
-        <option value="general">เรื่องทั่วไป</option>
-        <option value="study">เรื่องเรียน</option>
+            <option value="all">--ทั้งหมด--</option>
+            <option value="general">เรื่องทั่วไป</option>
+            <option value="study">เรื่องเรียน</option>
         </select>
-        <a href="login.php" style="float: right;">เข้าสู่ระบบ</a>        
+
+        <?php
+        
+        if(!isset($_SESSION['id'])){
+            echo "<a href=login.php style= ' float: right; ' > เข้าสู่ระบบ </a>"; //ใช้ ' style '
+        }else{
+           
+            echo "<div style= ' float: right; '> 
+                    ผู้ใช้งานระบบ : $_SESSION[username]&nbsp;&nbsp; 
+                    <a href=logout.php style= ' float: right; ' > ออกจากระบบ </a>
+                </div>";//&nbsp วรรค
+            
+        }
+        
+        ?>
+    
     </form>
     <br>
     <ul>
