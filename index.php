@@ -68,7 +68,7 @@ session_start();
         ?>
         
         <div>
-            <a href="newpost.php" class="btn-bg-success btn-sm"> <i class="bi bi-plus"></i> สร้างกระทู้ใหม่ </a>
+            <a href="newpost.php" class="btn btn-success btn-sm"> <i class="bi bi-plus"></i> สร้างกระทู้ใหม่ </a>
         </div>
 
         <?php
@@ -76,42 +76,33 @@ session_start();
         ?>
 
     </div>
-            
-        
-        
-        <?php
-        
-        if(!isset($_SESSION['id'])){
-            echo "<a href=login.php style= ' float: right; ' > เข้าสู่ระบบ </a>"; //ใช้ ' style '
-        }else{
-           
-            echo "<div style= ' float: right; '> 
-                    ผู้ใช้งานระบบ : $_SESSION[username]&nbsp;&nbsp; 
-                    <a href=logout.php style= ' float: right; ' > ออกจากระบบ </a>
-                </div>";//&nbsp วรรค
-
-            echo "<br> <a href=newpost.php > สร้างกระทู้ใหม่ </a> ";
-            
-        }
-        
-        ?>
     
-  
-    <br>
-    <ul>
+    <table class="table table-striped mt-4">
         <?php
 
             for($i = 1; $i <= 10; $i++){
 
-                echo "<li><a href=post.php?id=$i> กระทู้ที่ $i </a>";
-                if(isset($_SESSION['id']) && $_SESSION['role'] == 'a'){//login YES/NO and role == a
-                    echo "&nbsp;&nbsp; <a href=delete.php?id=$i > ลบ </a>";
+                echo "<tr>
+                        <td class='d-flex justify-content-between'>
+                            <a href=post.php?id=$i style=text-decoration:none > กระทู้ที่ $i </a>";
+                            
+                if(isset($_SESSION['id']) && $_SESSION['role'] == 'a'){ //login YES/NO and role == a
+
+                    echo "&nbsp;&nbsp; <a href=delete.php?id=$i class='btn btn-danger btn-sm' > <i class='bi bi-trash'></i> ลบ </a>";
+
                 }
-                echo "</li>";
+
+                echo "</tr>
+                        </td>";
                 
             }
 
         ?>
+    </table>
+
+    <br>
+    <ul>
+        
         
     </ul>
     </div>
