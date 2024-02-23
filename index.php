@@ -47,13 +47,38 @@ session_start();
             </ul>
         </div>
     </nav>
-    <form >
-        หมวดหมู่ : <select valoue="category">
-            <option value="all">--ทั้งหมด--</option>
-            <option value="general">เรื่องทั่วไป</option>
-            <option value="study">เรื่องเรียน</option>
-        </select>
+   
 
+    <div class="mt-3 d-flex justify-content-between">
+        <div>
+            <label>หมวดหมู่</label>
+            <span class="dropdown">
+                <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                --ทั้งหมด--
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
+                    <li><a class="dropdown-item" href="#">เรื่องทั่วไป</a></li>
+                    <li><a class="dropdown-item" href="#">เรื่องเรียน</a></li>
+                </ul>
+            </span>
+        </div>
+        <?php 
+            if(isset($_SESSION['id'])){
+        ?>
+        
+        <div>
+            <a href="newpost.php" class="btn-bg-success btn-sm"> <i class="bi bi-plus"></i> สร้างกระทู้ใหม่ </a>
+        </div>
+
+        <?php
+            }
+        ?>
+
+    </div>
+            
+        
+        
         <?php
         
         if(!isset($_SESSION['id'])){
@@ -71,7 +96,7 @@ session_start();
         
         ?>
     
-    </form>
+  
     <br>
     <ul>
         <?php
