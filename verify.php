@@ -15,8 +15,7 @@ if(isset($_SESSION['id'])){
     <title>Vertify</title>
 </head>
 <body>
-    <h1 style="text-align: center;">Webboard Nannapath</h1>
-    <hr> 
+    
     <div style="text-align: center;">
 
     <?php
@@ -28,31 +27,32 @@ if(isset($_SESSION['id'])){
             $_SESSION['username']='admin';
             $_SESSION['role']='a';
             $_SESSION['id']=session_id();
+            header("location:index.php");
+            die();
 
-            echo "ยินดีต้อนรับคุณ ADMIN";
+            //echo "ยินดีต้อนรับคุณ ADMIN";
 
         }elseif($login=="member" && $pwd=="mem1234"){
 
             $_SESSION['username']='member';
             $_SESSION['role']='m';
             $_SESSION['id']=session_id();
-
-            echo "ยินดีต้อนรับคุณ MEMBER";
+            header("location:index.php");
+            die();
+            //echo "ยินดีต้อนรับคุณ MEMBER";
 
         }else{
-
-            echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
+            $_SESSION['error']='error';
+            header("location:login.php");
+            die();
+            //echo "ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง";
 
         }
-
+        //<center>ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php">กรุณาสมัครสมาชิก</center>
         
     ?>
 
     </div>
-    <center><a href="index.php">กลับไปยังหน้าหลัก</center>
-    
-    
-
 </body>
 </html>
 
