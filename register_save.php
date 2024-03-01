@@ -19,7 +19,10 @@ if(isset($_POST['login'])){
     }
 
     $conn=null;
-    header("location:register.php"); // ส่งกลับindex
+    header("location:login.php"); 
+    die();
+}else{
+    header("location:index.php"); 
     die();
 }
 ?>
