@@ -34,7 +34,7 @@ if(!isset($_SESSION['id'])){
                             <div class="row">
                                 <label class="col-lg-3 col-form-label">หมวดหมู่ :</label>
                                 <div class="col-lg-9">
-                                    <select valoue="category" class="form-select">
+                                    <select name="category" class="form-select">
                                         <?php
                                            $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
                                            $sql="SELECT * FROM category";
