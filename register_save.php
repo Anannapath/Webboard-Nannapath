@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['login'])){
     $login=$_POST['login'];
     $password=sha1($_POST['pwd']);
@@ -6,7 +7,7 @@ if(isset($_POST['login'])){
     $gender=$_POST['gender'];
     $email=$_POST['email'];
 
-    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root"."");
+    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
 
     $sql="SELECT * FORM user where login='$login'";
     $result=$conn->query($sql);

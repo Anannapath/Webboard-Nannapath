@@ -8,7 +8,7 @@ if(isset($_SESSION['id'])){
 $login=$_POST['login'];
 $pwd=$_POST['pwd'];
 
-$conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root"."");
+$conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
 
 $sql="SELECT * FORM user where login='$login' and  password=sha1('$pwd')";
 $result=$conn->query($sql);
