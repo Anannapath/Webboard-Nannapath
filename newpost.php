@@ -37,7 +37,7 @@ if(!isset($_SESSION['id'])){
                                     <select valoue="category" class="form-select">
                                         <?php
                                            $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                                           $sql="SELECT * FORM category";
+                                           $sql="SELECT * FROM category";
                                            foreach($conn->query($sql) as $row){
                                                 echo "<option value=$row[id]>$row[name]</option>";
                                            }

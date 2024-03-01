@@ -33,7 +33,7 @@ session_start();
                     <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
                     <?php
                         $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                        $sql="SELECT * FORM category";
+                        $sql="SELECT * FROM category";
                         foreach($conn->query($sql) as $row){
                             echo "<li><a class='dropdown-item'href='#'>$row[name]</a></li>";
                         }

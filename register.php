@@ -41,9 +41,9 @@ if(isset($_SESSION['id'])){
                     <div class="card-body">
                         <form action="register_save.php" method="post">
                             <div class="row">
-                                <label class="col-lg-3 col-form-label" for="user">ชื่อบัญชี :</label>
+                                <label class="col-lg-3 col-form-label" for="login">ชื่อบัญชี :</label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="login" id="user" class="form-control" required>
+                                    <input type="text" name="login" id="login" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -53,9 +53,9 @@ if(isset($_SESSION['id'])){
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label" for="fname">ชื่อ-นามสกุล :</label>
+                                <label class="col-lg-3 col-form-label" for="name">ชื่อ-นามสกุล :</label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="name" id="fname" class="form-control" required>
+                                    <input type="text" name="name" id="name" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
