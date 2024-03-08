@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2024 at 06:11 AM
+-- Generation Time: Mar 08, 2024 at 06:21 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -55,6 +55,15 @@ CREATE TABLE `comment` (
   `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `content`, `post_date`, `user_id`, `post_id`) VALUES
+(3, 'fvzdfbzdfv', '2024-03-08 11:26:31', 5, 5),
+(4, 'ไทร์ไปเถอะแฮรี่ ไม่ขยันแบบนี้', '2024-03-08 11:27:39', 5, 5),
+(5, 'ิมิ่าม้่าม้่มใ', '2024-03-08 11:28:59', 5, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -77,7 +86,8 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`id`, `title`, `content`, `post_date`, `cat_id`, `user_id`) VALUES
 (1, 'จะ F มั๊ยครับ', 'ผมเอาแต่ลอกงานเพื่อน ผมจะ F มั๊ยครับ', '2024-03-01 11:51:05', 2, 3),
 (3, 'b', 'b', '2024-03-01 12:08:25', 1, 5),
-(4, 'จะ F มั๊ยครับ ', 'ผมเอาแต่ลอกงานเพื่อน ผมจะ F มั๊ยครับ', '2024-03-01 12:09:21', 2, 5);
+(4, 'จะ F มั๊ยครับ ', 'ผมเอาแต่ลอกงานเพื่อน ผมจะ F มั๊ยครับ', '2024-03-01 12:09:21', 2, 5),
+(5, 'xsx', 'xsx', '2024-03-08 10:46:25', 2, 5);
 
 -- --------------------------------------------------------
 
@@ -100,7 +110,6 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `password`, `name`, `gender`, `email`, `role`) VALUES
-(2, 'A', '1234', 'A', 'o', 'A@A.com', 'm'),
 (5, 'b', 'e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98', 'b', 'm', 'b@b.com', 'm');
 
 --
@@ -145,13 +154,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
