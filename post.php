@@ -1,10 +1,5 @@
 <?php
-
 session_start();
-if(!isset($_SESSION['id'])){
-    header("location:index.php");
-    die();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,32 +29,51 @@ if(!isset($_SESSION['id'])){
                     while($row=$result->fetch()){
                         echo  "<div class='card  border-primary mt-3'>";
                         echo  "<div class='card-header bg-primary text-white'> $row[0] </div>"; // post.title
-                        echo  "<div class='card-body'>$row[1] <br> <br> $row[3] $row[2] </div>";
+                        echo  "<div class='card-body'>$row[1] <br> <br> $row[3] - $row[2] </div>";
 
                         echo   "</div>";
                     }
 
-                    
+                    $sql="SELECT comment.content,comment.post_date,user.login FROM comment INNER JOIN user ON (comment.user_id=user.id)
+                    WHERE comment.post_id=$_GET[id]";
+                    $result=$conn->query($sql);
+                    $i=1;
+                    while($row=$result->fetch()){
+                        echo  "<div class='card  border-info  mt-3'>";
+                        echo  "<div class='card-header bg-info  text-white'> แสดงความคิดเห็น $i  </div>"; // comment
+                        echo  "<div class='card-body'>$row[0] <br> <br> $row[2] - $row[1] </div>";
+
+                        echo   "</div>";
+                        $i = $i+1;
+                    }
+
                 ?>
-                <div class="card border-success mt-3">
-                    <div class="card-header bg-success text-white"> แสดงความคิดเห็น</div>
-                    <div class="card-body">
-                        <form action="post_save.php" method="post">
-                            <input type="hidden" name="post_id" value="<?= $_GET['id']; ?>">
-                            <div class="row mb-3 justify-content-center">
-                                <div class="col-lg-10">
-                                    <textarea name="comment" rows="8" class="form-control" require></textarea>
+               
+                <?php
+                    if(isset($_SESSION['id'])){
+                ?>
+                    <div class="card border-success mt-3">
+                        <div class="card-header bg-success text-white"> แสดงความคิดเห็น</div>
+                        <div class="card-body">
+                            <form action="post_save.php" method="post">
+                                <input type="hidden" name="post_id" value="<?= $_GET['id']; ?>">
+                                <div class="row mb-3 justify-content-center">
+                                    <div class="col-lg-10">
+                                        <textarea name="comment" rows="8" class="form-control" require></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 d-flex justify-content-center" >
-                                    <button type="submit" class="btn btn-success btn-sm text-while">  <i class="bi bi-box-arrow-up-right"></i> ส่งข้อความ </button>
-                                    <button type="reset" class="btn btn-danger btn-sm ms-2">  <i class="bi bi-x-square"></i> ยกเลิก </button>
+                                <div class="row">
+                                    <div class="col-lg-12 d-flex justify-content-center" >
+                                        <button type="submit" class="btn btn-success btn-sm text-while">  <i class="bi bi-box-arrow-up-right"></i> ส่งข้อความ </button>
+                                        <button type="reset" class="btn btn-danger btn-sm ms-2">  <i class="bi bi-x-square"></i> ยกเลิก </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                <?php
+                    }
+                ?>
                 <br>
             </div>
             <div class="col-lg-3 col-md-2 col-sm-1 "></div>
