@@ -46,6 +46,7 @@ session_start();
                         echo   "</div>";
                         $i = $i+1;
                     }
+                    $conn=null;
 
                 ?>
                
