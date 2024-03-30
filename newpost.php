@@ -59,8 +59,8 @@ if(!isset($_SESSION['id'])){
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-lg-12 d-figure justify-content-center">
-                                    <button type="submit" class="btn btn-secondary btn-sm text-white me-2"> <i class="bi bi-caret-rigth-square"></i> สมัครสมาชิก</button>
+                                <div class="col-lg-12 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-info btn-sm text-white me-2"> <i class="bi bi-caret-rigth-square"></i> บันทึกข้อความ </button>
                                     <button type="reset" class="btn btn-danger btn-sm"> <i class="bi bi-x-square"></i> ยกเลิก</button>
                                 </div>
                             </div>
