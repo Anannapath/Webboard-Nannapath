@@ -48,8 +48,8 @@ if(isset($_SESSION['id'])){
                                 <div class="input-group">
                                         <input type="password" name="pwd" id="pwd" class="form-control" require >
                                         <span class="input-group-text" onclick="password_show_hide()">
-                                            <i class="bi bi-eye" id="show_eye"></i>
-                                            <i class="bi bi-eye-slash" id="hide_eye"></i>
+                                            <i class="bi bi-eye-fill" id="show_eye"></i>
+                                            <i class="bi bi-eye-slash-fill d-none" id="hide_eye"></i>
                                         </span>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@ if(isset($_SESSION['id'])){
                     let show_eye=document.getElementById("show_eye");
                     let hide_eye=document.getElementById("hide_eye");
                     hide_eye.classList.remove("d-none");
-                    if(x.type==="password"){
+                    if(x.type === "password"){
                         x.type="text";
                         show_eye.style.display="none";
                         hide_eye.style.display="block";
