@@ -76,7 +76,7 @@ session_start();
             <?php
             $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
 
-            $sql = "SELECT t3.name, t1.title, t1.id, t2.login, t1.post_date FROM post AS t1 
+            $sql = "SELECT t3.name, t1.title, t1.id,t1.user_id,t2.login, t1.post_date FROM post AS t1 
                 INNER JOIN user AS t2 ON (t1.user_id=t2.id)
                 INNER JOIN category AS t3 ON (t1.cat_id=t3.id)";
 
@@ -95,13 +95,27 @@ session_start();
                                 <a href='post.php?id={$row['id']}' style='text-decoration:none'> {$row['title']} </a> 
                                 <br> 
                                 {$row['login']} - {$row['post_date']}  </div>  ";
-                if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
-                    echo "<div class ='me-2 mt-2 align-self-center '>
-                            <a href='delete.php?id={$row['id']}' class ='btn btn-danger btn-sm' onclick='return confirmDelete()'>
-                                <i class='bi bi-trash3'></i>
-                            </a>
-                        </div>";
+
+                if(isset($_SESSION['id'])){
+                    echo "<span style='display: flex; justify-content: center;'>";
+                    
+                    if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+                        echo "<span class='me-2 mt-2'><a href=delete.php?id=$row[id] class='btn btn-danger btn-sm' onclick='return confirmDelete()'><i class='bi bi-trash3'></i></a></span>";
+                        if($_SESSION['user_id'] == $row['user_id']){
+                            echo "<span class='me-2 mt-2'><a href=editpost.php?id=$row[id] class='btn btn-warning btn-sm' ><i class='bi bi-pencil-square'></i></a></span></span>";
+                        }
+                    }
+
+                    else if(isset($_SESSION['id']) && $_SESSION['role'] != 'a'){
+                        if($_SESSION['user_id'] == $row['user_id']){
+                            echo "<span class='me-2 mt-2'><a href=delete.php?id=$row[id] class='btn btn-danger btn-sm' onclick='return confirmDelete()'><i class='bi bi-trash3'></i></a></span>
+                            <span class='me-2 mt-2'><a href=editpost.php?id=$row[id] class='btn btn-warning btn-sm' ><i class='bi bi-pencil-square'></i></a></span></span>";
+                        }
+
+                    }
                 }
+               
+                
                 
                 echo "</td> </tr>";
             }
