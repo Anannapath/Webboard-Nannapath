@@ -1,11 +1,10 @@
 <?php
-
 session_start();
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,82 +13,102 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Webboard Nannapath</title>
     <script>
-
-        function Myfunction(){
-            let r=confirm("ต้องการลบจริงหรือไม่");
+        function confirmDelete() {
+            let r = confirm("ต้องการลบจริงหรือไม่");
             return r;
         }
-
     </script>
 </head>
+
 <body>
     <div class="container-lg">
-    <h1 style="text-align: center;" class="mt-3">Webboard Nannapath</h1> 
+        <h1 style="text-align: center;" class="mt-3">Webboard Nannapath</h1>
 
-    <?php
-        include "nav.php"
-    ?>
+        <?php include "nav.php" ?>
 
         <div class="mt-3 d-flex justify-content-between">
             <div>
                 <label>หมวดหมู่</label>
                 <span class="dropdown">
-                    <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    --ทั้งหมด--
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="Button2">
-                        <li><a class="dropdown-item" href="#">ทั้งหมด</a></li>
+                <?php
+                        if (isset($_GET['id']) && !empty($_GET['id'])){
+                            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
+                            $sql = "SELECT * FROM category as c
+                                    WHERE c.id = {$_GET['id']}";
+                            foreach ($conn->query($sql) as $row) {   
+                        ?>
+                            <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?=$row['name']?>
+                            </button>
                         <?php
-                            $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                            $sql="SELECT * FROM category";
-                            foreach($conn->query($sql) as $row){
-                                echo "<li><a class='dropdown-item'href='#'>$row[name]</a></li>";
                             }
-                            $conn=null;
+                        }else{
+                        ?>
+                            <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                --ทั้งหมด--
+                            </button>
+                        <?php
+                        }
+                    ?>
+                    <ul class="dropdown-menu" aria-labelledby="Button2">
+                        <li><a class="dropdown-item" href="index.php" >ทั้งหมด</a></li>
+                        <?php
+                        $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
+                        $sql = "SELECT * FROM category ";
+                        foreach ($conn->query($sql) as $row) {
+                            echo "<li><a class='dropdown-item' href='index.php?id={$row['id']}'>{$row['name']}</a></li>";
+                        }
+                        $conn = null;
                         ?>
                     </ul>
                 </span>
             </div>
-            <?php 
-                if(isset($_SESSION['id'])){
-            ?>
-            
-            <div>
-                <a href="newpost.php" class="btn btn-success btn-sm"> <i class="bi bi-plus"></i> สร้างกระทู้ใหม่ </a>
-            </div>
 
-            <?php
-                }
-            ?>
+            <?php if (isset($_SESSION['id'])) { ?>
+                <div>
+                    <a href="newpost.php" class="btn btn-success btn-sm"> <i class="bi bi-plus"></i> สร้างกระทู้ใหม่ </a>
+                </div>
+            <?php } ?>
 
         </div>
-        
+
         <table class="table table-striped mt-4">
             <?php
-                $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8", "root", "");
 
-                $sql="SELECT t3.name,t1.title,t1.id,t2.login,t1.post_date FROM post as t1 
-                INNER JOIN user as t2 ON (t1.user_id=t2.id)
-                INNER JOIN category as t3 ON (t1.cat_id=t3.id) ORDER BY t1.post_date DESC";
-                $result=$conn->query($sql);
-    
+            $sql = "SELECT t3.name, t1.title, t1.id, t2.login, t1.post_date FROM post AS t1 
+                INNER JOIN user AS t2 ON (t1.user_id=t2.id)
+                INNER JOIN category AS t3 ON (t1.cat_id=t3.id)";
 
-                while($row=$result->fetch()){
-                    echo "<tr>
-                            <td class='d-flex-justify-constant-between' > 
-                            <div>  [ $row[0] ] 
-                                <a href=post.php?id=$row[2] style=text-decoration:none > $row[1] </a> 
+            if (isset($_GET['id']) && !empty($_GET['id'])) {
+                $category_id = $_GET['id'];
+                $sql .= " WHERE t1.cat_id = $category_id";
+            }
+
+            $sql .= " ORDER BY t1.post_date DESC";
+            $result = $conn->query($sql);
+
+            while ($row = $result->fetch()) {
+                echo "<tr>
+                            <td class='d-flex justify-content-between'> 
+                            <div>  [ {$row['name']} ] 
+                                <a href='post.php?id={$row['id']}' style='text-decoration:none'> {$row['title']} </a> 
                                 <br> 
-                                $row[3] - $row[4]  </div> ";
-                            if(isset($_SESSION['id']) && $_SESSION['role']=='a'){
-                                echo "<div class ='me-2 mt-2 align-self-center '><a href=delete.php?id=$row[2] class ='btn btn-danger btn-sm' onclick='return Myfunction()'  >
-                                <i class='bi bi-trash3'></i></a> </div>";
-                            }
-                            echo "</td> </tr>";
+                                {$row['login']} - {$row['post_date']}  </div>  ";
+                if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
+                    echo "<div class ='me-2 mt-2 align-self-center '>
+                            <a href='delete.php?id={$row['id']}' class ='btn btn-danger btn-sm' onclick='return confirmDelete()'>
+                                <i class='bi bi-trash3'></i>
+                            </a>
+                        </div>";
                 }
-                $conn=null;
+                
+                echo "</td> </tr>";
+            }
+            $conn = null;
             ?>
         </table>
     </div>
 </body>
+
 </html>
