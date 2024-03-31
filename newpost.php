@@ -25,50 +25,54 @@ if(!isset($_SESSION['id'])){
             include "nav.php"
         ?>
         <div class="row mt-4">
-            <div class="col-lg-3 col-md-2 col-sm-1  "></div>
-            <div class="col-lg-6 col-md-8 col-sm-10 ">
+            <div class="col-lg-3 col-md-2 col-sm-1"></div>
+            <div class="col-lg-6 col-md-8 col-sm-10">
                 <div class="card border-info">
-                    <div class="card-header bg-info text-while">ตั้งกระทู้ใหม่</div>
+                    <div class="card-header bg-info text-white"> ตั้งกระทู้ใหม่ </div>
                     <div class="card-body">
                         <form action="newpost_save.php" method="post">
                             <div class="row">
-                                <label class="col-lg-3 col-form-label">หมวดหมู่ :</label>
+                                <label class="col-lg-3 col-form-label"> หมวดหมู่: </label>
                                 <div class="col-lg-9">
                                     <select name="category" class="form-select">
                                         <?php
-                                           $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
-                                           $sql="SELECT * FROM category";
-                                           foreach($conn->query($sql) as $row){
-                                                echo "<option value=$row[id]>$row[name]</option>";
-                                           }
-                                           $conn=null;
+                                            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                                            $sql = "SELECT * FROM category";
+                                            foreach($conn->query($sql) as $row){
+                                                echo "<option value=$row[id] > $row[name] </option>";
+                                            }
+                                            $conn = null;
                                         ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">หัวข้อ :</label>
+                                <label   label class="col-lg-3 col-form-label" for="topic"> หัวข้อ: </label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="topic" class="form-control" require>
+                                    <input type="text" name="topic" id="topic" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">เนื้อหา :</label>
+                                <label   label class="col-lg-3 col-form-label" for="comment"> เนื้อหา: </label>
                                 <div class="col-lg-9">
-                                    <textarea name="comment" row="8" class="form-control" require></textarea>
+                                   <textarea name="comment" id="comment"  rows="8" class="form-control" required></textarea>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-info btn-sm text-white me-2"> <i class="bi bi-caret-rigth-square"></i> บันทึกข้อความ </button>
-                                    <button type="reset" class="btn btn-danger btn-sm"> <i class="bi bi-x-square"></i> ยกเลิก</button>
+                                    <button type="submit" class="btn btn-info text-white btn-sm me-2">
+                                        <i class="bi bi-save2"></i> บันทึกข้อความ
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-x-circle"></i> ยกเลิก
+                                    </button>
                                 </div>
                             </div>
                         </form>
-                    </div>  
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-2 col-sm-1 "></div>
+            <div class="col-lg-3 col-md-2 col-sm-1"></div>
         </div>
     </div>
 </body>
